@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+
+<link href="js/novus-nvd3/build/nv.d3.css" rel="stylesheet" type="text/css">
+<script src="js/d3.v3.js" charset="utf-8"></script>
+<script src="js/novus-nvd3/build/nv.d3.js"></script>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/groupedstackedbar.js"></script>
+
+<link rel="stylesheet" href="css/groupedstackedbar.css"/>
+
+<head>
+<script>
+var dataUrl = "data/nat13_coding_tot_pmterr_sum.json"
+$(document).ready(function() {
+  // Add event listeners
+  document.getElementById("order").addEventListener("change", wrapperPerformIndirectSort);
+  document.getElementById("sortby").addEventListener("change", wrapperPerformIndirectSort);
+  document.getElementById("sampleselector").addEventListener("change", updateUrl);
+  document.getElementById("categoryselector").addEventListener("change", updateUrl);
+  document.getElementById("analysisselector").addEventListener("change", updateUrl);
+  document.getElementById("methodselector").addEventListener("change", updateUrl);
+
+  // Initialize data
+	grouped_stacked_bar_display(dataUrl, "#groupedstackedbar");
+});
+
+</script>
+</head>
+
+<body>
+<div>
+  Sample:
+  <select id="sampleselector">
+    <option value="nat13">NAT13</option>
+    <option value="nat12">NAT12</option>
+    <option value="nat11">NAT11</option>
+  </select>
+
+  Category:
+  <select id="categoryselector">
+    <option value="coding">CODING</option>
+    <option value="invalid">INVALID</option>
+    <option value="missing">MISSING</option>
+    <option value="signcred">SIGNCRED</option>
+  </select>
+
+  Method:
+  <select id="methodselector">
+    <option value="sum">SUM</option>
+    <option value="avg">AVG</option>
+  </select>
+
+  Y Axis:
+  <select id="analysisselector">
+    <option value="tot_pmterr">NET PAYMENT ERROR</option>
+    <option value="tot_gross_pmterr">GROSS PAYMENT ERROR</option>
+  </select>
+
+  Order:
+  <select id="order">
+    <option value="Ascending" selected>Ascending</option>
+    <option value="Descending">Descending</option>
+  </select>
+
+  Sort By:
+  <select id="sortby">
+    <option value="Key">Key</option>
+  </select>
+
+</div>
+<div id="groupedstackedbar"></div>
+
+
+</body>
+</html>
